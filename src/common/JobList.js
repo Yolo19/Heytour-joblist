@@ -24,7 +24,7 @@ return (
             </Card>
             </Grid.Column>
             <Grid.Column width={13}>
-            <List>
+            <List size='big' relaxed='very'>
                 <List.Item>
                     <List.Content>
                         <List.Header as='a'>{item.title}</List.Header>
