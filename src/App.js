@@ -1,11 +1,13 @@
-import './App.css';
-import AppMenu from './common/AppMenu';
+import './App.css'
+import AppMenu from './common/AppMenu'
+import { Container } from 'semantic-ui-react'
+import JobList from './joblist/JobList'
 
 
 function App() {
   return (
-    <div className="App">
-      <AppMenu />
+    <div >
+        <AppMenu/>
     </div>
   );
 }

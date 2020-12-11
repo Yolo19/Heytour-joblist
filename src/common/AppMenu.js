@@ -2,7 +2,7 @@ import React, { useReducer } from 'react'
 import { Menu, Button } from 'semantic-ui-react'
 import Auth from '../authentication/Auth'
 import appMenuReducer from './AppMenuReducer'
-import JobList from './JobList'
+import JobList from '../joblist/JobList'
 
 export default function AppMenu() {
   const [state, dispatch] = useReducer(appMenuReducer, {
