@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "CCldpNZGAGZd44w0gTg2svSjSPipxCissPyvCnTOB4kA27OdIBtwGq3SKV/5R1hcYrAAVyOr0bPEJoy3HB0w4w==",
+  "dgSpecHash": "uYKDHhncHg88cyl9Yos/Ej7ymBF8Kts73xrSuR7Z3e0gmkxMAOtTqtppwTsLQvRdXRy36DAne3d4Jt73UzA6eQ==",
   "success": true,
   "projectFilePath": "/Users/yulu/Heytour-joblist/JobApi/JobApi.csproj",
   "expectedPackageFiles": [
@@ -36,6 +36,7 @@
     "/Users/yulu/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
     "/Users/yulu/.nuget/packages/microsoft.win32.registry/4.7.0/microsoft.win32.registry.4.7.0.nupkg.sha512",
     "/Users/yulu/.nuget/packages/microsoft.win32.systemevents/4.7.0/microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "/Users/yulu/.nuget/packages/newtonsoft.json/12.0.3/newtonsoft.json.12.0.3.nupkg.sha512",
     "/usr/local/share/dotnet/sdk/NuGetFallbackFolder/runtime.native.system/4.3.0/runtime.native.system.4.3.0.nupkg.sha512",
     "/Users/yulu/.nuget/packages/swashbuckle.aspnetcore/5.6.3/swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
     "/Users/yulu/.nuget/packages/swashbuckle.aspnetcore.swagger/5.6.3/swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",

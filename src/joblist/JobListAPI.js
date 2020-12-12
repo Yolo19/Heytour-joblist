@@ -28,6 +28,7 @@ function jobAPIReducer(state, action) {
   }
 };
 
+
 export function useJobList(initialFilter) {
   const didMountRef = useRef(true);
 

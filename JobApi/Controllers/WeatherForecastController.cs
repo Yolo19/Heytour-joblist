@@ -26,24 +26,19 @@ namespace JobApi.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<WeatherForecast?> Get()
+        public IEnumerable<WeatherForecast> Get()
         {
             var rng = new Random();
+
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
                 TemperatureC = rng.Next(-20, 55),
-                // Summary = Summaries[rng.Next(Summaries.Length)],
-                id= 1,
-                isActive= true,
-                title= "Fu Er Dai",
-                location= "Watchtower, Washington",
-                industry = "Rich",
-                picture = "https://i.picsum.photos/id/703/300/150.jpg?hmac=u4EJJhnL7eJiV1Ub0wJ5El9hPvAeZvfIIJuKvVFtNus",
+                Summary = Summaries[rng.Next(Summaries.Length)],
 
             })
             .ToArray();
-            //return null;
+            
         }
 
         [HttpGet("jobdata")]
@@ -52,7 +47,7 @@ namespace JobApi.Controllers
             StreamReader sr = File.OpenText("data.json");
             string jsonWordTemplate = sr.ReadToEnd();
             var data = JsonConvert.DeserializeObject<JobData>(jsonWordTemplate);
-            return "data";
+            return data;
         }
     }
 }
