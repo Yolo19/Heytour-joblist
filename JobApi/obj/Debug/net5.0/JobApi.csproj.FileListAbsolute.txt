@@ -58,3 +58,4 @@
 /Users/yulu/Heytour-joblist/JobApi/obj/Debug/net5.0/JobApi.pdb
 /Users/yulu/Heytour-joblist/JobApi/obj/Debug/net5.0/JobApi.genruntimeconfig.cache
 /Users/yulu/Heytour-joblist/JobApi/bin/Debug/net5.0/data.json
+/Users/yulu/Heytour-joblist/JobApi/bin/Debug/net5.0/Newtonsoft.Json.dll
