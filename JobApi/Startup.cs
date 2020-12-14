@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using JobApi.Service;
+using JobApi.Repo;
 
 namespace JobApi
 {
@@ -26,7 +28,19 @@ namespace JobApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("*")
+                                .AllowAnyHeader()
+                                .AllowAnyMethod();
+                    });
+            });
 
+            services.AddScoped<IJobService, JobService>();
+            services.AddScoped<IJobRepo, JobRepo>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -47,7 +61,7 @@ namespace JobApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
