@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card,Container, Grid } from 'semantic-ui-react'
+import { Container, Grid } from 'semantic-ui-react'
 import { useJobList } from './JobListAPI'
 import JobListContent from './JobListContent';
 
