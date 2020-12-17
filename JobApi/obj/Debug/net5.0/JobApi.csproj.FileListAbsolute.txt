@@ -59,3 +59,11 @@
 /Users/yulu/Heytour-joblist/JobApi/obj/Debug/net5.0/JobApi.genruntimeconfig.cache
 /Users/yulu/Heytour-joblist/JobApi/bin/Debug/net5.0/data.json
 /Users/yulu/Heytour-joblist/JobApi/bin/Debug/net5.0/Newtonsoft.Json.dll
+/Users/yulu/Heytour-joblist/JobApi/bin/Debug/net5.0/System.Web.Mvc.dll
+/Users/yulu/Heytour-joblist/JobApi/bin/Debug/net5.0/System.Web.Razor.dll
+/Users/yulu/Heytour-joblist/JobApi/bin/Debug/net5.0/System.Web.Helpers.dll
+/Users/yulu/Heytour-joblist/JobApi/bin/Debug/net5.0/System.Web.WebPages.Deployment.dll
+/Users/yulu/Heytour-joblist/JobApi/bin/Debug/net5.0/System.Web.WebPages.Razor.dll
+/Users/yulu/Heytour-joblist/JobApi/bin/Debug/net5.0/System.Web.WebPages.dll
+/Users/yulu/Heytour-joblist/JobApi/bin/Debug/net5.0/Microsoft.Web.Infrastructure.dll
+/Users/yulu/Heytour-joblist/JobApi/bin/Debug/net5.0/Microsoft.Docs.Samples.RouteInfo.dll

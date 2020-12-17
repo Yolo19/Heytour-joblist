@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using JobApi;
+using JobApi.Repo;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using JobApi.Model;
 using JobApi.Service;
 using System.Threading.Tasks;
+using Microsoft.Docs.Samples;
+
+
+
 
 namespace JobApi.Controllers
 {
@@ -23,17 +28,34 @@ namespace JobApi.Controllers
         {
            _jobService = jobService;
         }
-
-
+        
 
         [HttpGet]
-
         public async Task<JobList[]> GetJobData()
         {
             var jobs = await _jobService.GetJobData();
-
             return jobs;
-            // return jobs.ToList();
+        }
+
+        [HttpGet("IsActive")]
+         public  List<JobList> GetJobByIsActive(bool isActive)
+        {
+            var data =  _jobService.GetJobByIsActive(isActive);
+            return data;
+        }
+        [HttpGet("PostedOn")]
+         public  List<JobList> GetJobByPostedOn(DateTime postedOn)
+        {
+            var data =  _jobService.GetJobByPostedOn(postedOn);
+            return data;
+        }
+        
+        
+        [HttpGet("{id=1}")]
+        public List<JobList> GetJobDataById(int id)
+        {
+            var data =  _jobService.GetJobDataById(id);
+            return data;
         }
     }
 }
