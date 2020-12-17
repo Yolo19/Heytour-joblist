@@ -31,30 +31,30 @@ namespace JobApi.Controllers
         
 
         [HttpGet]
-        public async Task<JobList[]> GetJobData()
+        public async Task<List<JobList>> GetJobData()
         {
             var jobs = await _jobService.GetJobData();
             return jobs;
         }
 
         [HttpGet("IsActive")]
-         public  List<JobList> GetJobByIsActive(bool isActive)
+         public  async Task<List<JobList>>GetJobByIsActive(bool isActive)
         {
-            var data =  _jobService.GetJobByIsActive(isActive);
+            var data =  await _jobService.GetJobByIsActive(isActive);
             return data;
         }
         [HttpGet("PostedOn")]
-         public  List<JobList> GetJobByPostedOn(DateTime postedOn)
+         public  async Task<List<JobList>> GetJobByPostedOn(DateTime postedOn)
         {
-            var data =  _jobService.GetJobByPostedOn(postedOn);
+            var data =  await _jobService.GetJobByPostedOn(postedOn);
             return data;
         }
         
         
         [HttpGet("{id=1}")]
-        public List<JobList> GetJobDataById(int id)
+        public async Task<List<JobList>> GetJobDataById(int id)
         {
-            var data =  _jobService.GetJobDataById(id);
+            var data = await _jobService.GetJobDataById(id);
             return data;
         }
     }

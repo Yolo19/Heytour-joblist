@@ -15,11 +15,13 @@ namespace JobApi.Service
 {
     public interface IJobService
     {
-        Task<JobList[]> GetJobData();
-        public List<JobList> GetJobDataById(int id);
-        // public List<JobList> GetJobs(bool? isActive, DateTime postedOn);
-        public List<JobList> GetJobByIsActive(bool isActive);
-        public List<JobList> GetJobByPostedOn(DateTime postedOn);
+        Task<List<JobList>> GetJobData();
+        Task<List<JobList>> GetJobDataById(int id);
+        Task<List<JobList>> GetJobByIsActive(bool isActive);
+        Task<List<JobList>> GetJobByPostedOn(DateTime postedOn);
+        // public List<JobList> GetJobDataById(int id);
+        // public List<JobList> GetJobByIsActive(bool isActive);
+        // public List<JobList> GetJobByPostedOn(DateTime postedOn);
        
     
     }
@@ -32,19 +34,32 @@ namespace JobApi.Service
             _JobRepo = jobRepo;
         }
 
-        public async Task<JobList[]> GetJobData()
+        public async Task<List<JobList>> GetJobData()
         {
-            var jobs = await Task.Run(()=> _JobRepo.GetJobData());
+            var jobs = await Task.Run(()=> _JobRepo.GetJobData().ToList());
             return jobs;
         }
 
 
-        public List<JobList> GetJobDataById(int id)
+        public async Task<List<JobList>> GetJobDataById(int id)
         {
-            var data =  _JobRepo.GetJobData();
-            var result = data.Where(x => x.ID == id).ToList();
+            var jobs = await Task.Run(()=> _JobRepo.GetJobData());
+            var result = jobs.Where(x => x.ID == id).ToList();
             return result;
         }   
+
+        public  async Task<List<JobList>> GetJobByIsActive([FromQuery]bool isActive) 
+        {
+            var jobs = await Task.Run(()=> _JobRepo.GetJobData());
+            var result = jobs.Where(x=>x.IsActive == isActive).ToList();
+            return result;
+        }
+        public  async Task<List<JobList>> GetJobByPostedOn([FromQuery]DateTime postedOn) 
+        {
+            var jobs = await Task.Run(()=> _JobRepo.GetJobData());
+            var result= jobs.Where(x=>x.PostedOn == postedOn).ToList();
+            return result;
+        }
 
         // public  List<JobList> GetJobs([FromQuery]bool? isActive, [FromQuery]DateTime postedOn) 
         // {
@@ -65,17 +80,6 @@ namespace JobApi.Service
         //         }
         //     return data;
         // }
-        public  List<JobList> GetJobByIsActive([FromQuery]bool isActive) 
-        {
-            var result =  _JobRepo.GetJobData();
-            var data = result.Where(x=>x.IsActive == isActive).ToList();
-            return data;
-        }
-        public  List<JobList> GetJobByPostedOn([FromQuery]DateTime postedOn) 
-        {
-            var result =  _JobRepo.GetJobData();
-            var data = result.Where(x=>x.PostedOn == postedOn).ToList();
-            return data;
-        }
+        
     }
 }
