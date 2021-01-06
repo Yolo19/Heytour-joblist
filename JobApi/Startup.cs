@@ -4,12 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using JobApi.Service;
 using JobApi.Repo;
@@ -46,6 +43,8 @@ namespace JobApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "JobApi", Version = "v1" });
             });
+
+            services.AddDbContext<JobDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,7 +60,9 @@ namespace JobApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
             app.UseCors();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

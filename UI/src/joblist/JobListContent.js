@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card, Icon, Image, Button, Divider } from 'semantic-ui-react'
 import moment from 'moment'
+import JobForm from '../createJobs/JobForm';
 
 export default function JobListContent(props) {
 
@@ -22,21 +23,18 @@ export default function JobListContent(props) {
           <Card.Meta textAlign='left'> <Icon name='map marker alternate' />{props.job.location}</Card.Meta>
           <Divider hidden />
           <Card.Description textAlign='left'>{'Listed On: ' + moment(props.job.postedOn).format('DD MMM YYYY')}</Card.Description>
-       
-        
       </Card.Content>
       <Card.Content extra>
         <div className='ui two buttons'>
-          <Button basic color='green'>
-            <Icon name='heart'/> Save
-          </Button>
           <Button basic color='red'>
-            <Icon name='plus'/> Apply
+              <Icon name='delete'/> Delete
+          </Button>
+          <Button basic color='green'>
+            <Icon name='edit'/> Edit
           </Button>
         </div>
       </Card.Content>
     </Card>
-  
   )
 
 }

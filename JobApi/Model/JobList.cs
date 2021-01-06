@@ -9,6 +9,7 @@ namespace JobApi.Model
     {
         public int ID { get; set; }
         public bool IsActive { get; set; }
+        
         public string Title { get; set; } 
         public string Location { get; set; }
         public string Industry { get; set; }
@@ -16,6 +17,13 @@ namespace JobApi.Model
         public string Company { get; set; }
         public string Email { get; set; }
         public string JobDesc { get; set; }
+        public DateTime PostedOn { get; set; }
+    }
+
+    public class JobFilter
+    {
+        public string Title { get; set; }
+        public bool IsActive { get; set; }
         public DateTime PostedOn { get; set; }
     }
 }

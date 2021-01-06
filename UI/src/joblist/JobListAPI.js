@@ -51,7 +51,6 @@ export function useJobList(initialFilter) {
       dispatch({type: "FETCH_INIT"});
       const response = await axios.get(url);
       dispatch({type: "FETCH_SUCCESS", payload: response.data});
-
     }
 
     if (didMountRef.current) {

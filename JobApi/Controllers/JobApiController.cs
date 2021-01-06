@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using JobApi;
 using JobApi.Repo;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using JobApi.Model;
 using JobApi.Service;
 using System.Threading.Tasks;
-using Microsoft.Docs.Samples;
+
 
 
 
@@ -19,43 +16,71 @@ namespace JobApi.Controllers
 {
     [ApiController]
     [Route("api/jobs")]
-    public class JobController : ControllerBase
+    public class JobController : Controller
     {
 
         private readonly IJobService _jobService;
-
-        public JobController(IJobService jobService)
+        public JobController(
+            IJobService jobService)
         {
-           _jobService = jobService;
+            _jobService = jobService;
+        }
+
+        [HttpGet]
+         public async Task<ActionResult<IEnumerable<JobList>>> GetJobs()
+        {
+            _ = DateTime.TryParse(HttpContext.Request.Query["postedon"].ToString(), out DateTime postedOn);
+
+            var filter = new JobFilter
+            {
+                IsActive = HttpContext.Request.Query["isactive"].ToString() == "true",
+                PostedOn = postedOn,
+                Title = HttpContext.Request.Query["title"].ToString()
+            };
+                
+            var jobs = await _jobService.GetJobs(filter);
+
+            return jobs.ToList();
         }
         
 
         [HttpGet]
-        public async Task<List<JobList>> GetJobData()
+        [Route("{id}")]
+
+        public async Task<ActionResult<JobList>> GetJob(int id)
         {
-            var jobs = await _jobService.GetJobData();
-            return jobs;
+            var job = await _jobService.GetJob(id);
+
+            return job;
         }
 
-        [HttpGet("IsActive")]
-         public  async Task<List<JobList>>GetJobByIsActive(bool isActive)
+        [HttpPost]
+
+        public async Task<ActionResult<JobList>> PostJob(JobList job)
         {
-            var data =  await _jobService.GetJobByIsActive(isActive);
-            return data;
-        }
-        [HttpGet("PostedOn")]
-         public  async Task<List<JobList>> GetJobByPostedOn(DateTime postedOn)
-        {
-            var data =  await _jobService.GetJobByPostedOn(postedOn);
-            return data;
+            var res = await _jobService.CreateJob(job);
+
+            return res;
         }
         
-        
-        [HttpGet("{id=1}")]
-        public async Task<List<JobList>> GetJobDataById(int id)
+        [HttpPut]
+        [Route("{id}")]
+
+        public async Task<ActionResult> PutJob(int id, JobList job)
         {
-            var data = await _jobService.GetJobDataById(id);
-            return data;
+            await _jobService.UpdateJob(id, job);
+
+            return NoContent();
+        }
+
+        [HttpDelete]
+        [Route("{id}")]
+
+        public async Task<ActionResult> DeleteJob(int id)
+        {
+            await _jobService.DeleteJob(id);
+
+            return NoContent();
         }
     }
 }

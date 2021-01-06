@@ -15,71 +15,51 @@ namespace JobApi.Service
 {
     public interface IJobService
     {
-        Task<List<JobList>> GetJobData();
-        Task<List<JobList>> GetJobDataById(int id);
-        Task<List<JobList>> GetJobByIsActive(bool isActive);
-        Task<List<JobList>> GetJobByPostedOn(DateTime postedOn);
-        // public List<JobList> GetJobDataById(int id);
-        // public List<JobList> GetJobByIsActive(bool isActive);
-        // public List<JobList> GetJobByPostedOn(DateTime postedOn);
-       
-    
+        Task<IEnumerable<JobList>> GetJobs(JobFilter filter);
+        Task<JobList> GetJob(int id);
+        Task<JobList> CreateJob(JobList job);
+        Task UpdateJob(int id, JobList job);
+        Task DeleteJob(int id);
     }
 
     public class JobService: IJobService
     {
-        private readonly IJobRepo _JobRepo;
+        private readonly IJobRepo _jobRepo;
         public JobService(IJobRepo jobRepo)
         {
-            _JobRepo = jobRepo;
+            _jobRepo = jobRepo;
         }
 
-        public async Task<List<JobList>> GetJobData()
+        public async Task<IEnumerable<JobList>> GetJobs(JobFilter filter)
         {
-            var jobs = await Task.Run(()=> _JobRepo.GetJobData().ToList());
+
+            var jobs = await _jobRepo.GetJobs(filter);
+
             return jobs;
         }
 
-
-        public async Task<List<JobList>> GetJobDataById(int id)
+        public async Task<JobList> GetJob(int id)
         {
-            var jobs = await Task.Run(()=> _JobRepo.GetJobData());
-            var result = jobs.Where(x => x.ID == id).ToList();
-            return result;
-        }   
-
-        public  async Task<List<JobList>> GetJobByIsActive([FromQuery]bool isActive) 
-        {
-            var jobs = await Task.Run(()=> _JobRepo.GetJobData());
-            var result = jobs.Where(x=>x.IsActive == isActive).ToList();
-            return result;
-        }
-        public  async Task<List<JobList>> GetJobByPostedOn([FromQuery]DateTime postedOn) 
-        {
-            var jobs = await Task.Run(()=> _JobRepo.GetJobData());
-            var result= jobs.Where(x=>x.PostedOn == postedOn).ToList();
-            return result;
+            var job = await _jobRepo.GetJob(id);
+            return job;
         }
 
-        // public  List<JobList> GetJobs([FromQuery]bool? isActive, [FromQuery]DateTime postedOn) 
-        // {
-        //     var result =  _JobRepo.GetJobData();
-        //     var data =  _JobRepo.GetJobData().ToList();
-        //     // var data = result.Where(x=>x.IsActive == isActive || x.PostedOn == postedOn).ToList();
-        //     if (isActive!=null)
-                
-        //         { 
-        //             var result1 = result.Where(x => x.IsActive == isActive).ToList();
-        //             return result1; 
-        //         }
-                
-        //     if (postedOn!=null)
-        //         {
-        //             var result2 = result.Where(x => x.PostedOn == postedOn).ToList();
-        //             return  result2;
-        //         }
-        //     return data;
-        // }
+        public async Task<JobList> CreateJob(JobList job)
+        {
+            var res = await _jobRepo.CreateJob(job);
+            return res;
+        }
+
+        public async Task UpdateJob(int id, JobList job)
+        {
+            job.ID = id;
+            await _jobRepo.UpdateJob(job);
+        }
+
+        public async Task DeleteJob(int id)
+        {
+            await _jobRepo.DeleteJob(id);
+        }
         
     }
 }
