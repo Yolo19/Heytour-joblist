@@ -59,27 +59,7 @@ export function useJobList(initialFilter) {
     
   }, [filter]);
 
+
   return [state, setFilter];   
 
 }
-
-//   useEffect(() => {
-
-//     function sleep(ms) {
-//       return new Promise(resolve => setTimeout(resolve, ms));
-//     }
-
-//     async function getJobs() {
-//       dispatch({type: "FETCH_INIT"});
-//       await sleep(600);
-//       dispatch({type: "FETCH_SUCCESS", payload: data});
-
-//     }
-
-//     if (didMountRef.current) {
-//       getJobs();
-//     }
-//   }, [filter]);
-
-//   return [state, setFilter];
-// }

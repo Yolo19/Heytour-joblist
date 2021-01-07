@@ -26,8 +26,10 @@ namespace JobApi.Repo
 
         public async Task<IEnumerable<JobList>> GetJobs(JobFilter filter)
         {
-            var query =  _jobDbContext.JobList
-                .Where(j => j.IsActive == filter.IsActive);
+            var query =  _jobDbContext.JobList;
+            if (filter.IsActive==true) {
+                query.Where(j => j.IsActive == filter.IsActive);
+            }
 
             if (filter.PostedOn != default)
             {
